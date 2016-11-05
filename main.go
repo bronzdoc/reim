@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/bronzdoc/slacky/lib"
+	"github.com/bronzdoc/slacky/lib/image"
 )
 
 type Options struct {
@@ -20,7 +21,7 @@ func newCli(options Options) *Cli {
 	return &Cli{Options: options}
 }
 
-func (c *Cli) run(image *lib.Image) {
+func (c *Cli) run(image *image.Image) {
 	width := c.Options.Width
 	height := c.Options.Height
 	image.Resize(width, height, "slack-image.jpg")
@@ -41,5 +42,11 @@ func init() {
 }
 
 func main() {
-	cli.run(lib.NewImage("vim_dishwash_bar.jpg"))
+	formater := new(lib.JPEG)
+	cli.run(
+		image.NewImage(
+			"/home/bronzdoc/Pictures/vim_dishwash_bar.jpg",
+			formater,
+		),
+	)
 }
