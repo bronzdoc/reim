@@ -1,0 +1,6 @@
+hash: 1d4aa941bfd473476a342227042951f29d315ce878a7f7975906bf7b811dd184
+updated: 2016-11-04T18:20:03.598165393-06:00
+imports:
+- name: github.com/nfnt/resize
+  version: 891127d8d1b52734debe1b3c3d7e747502b6c366
+testImports: []

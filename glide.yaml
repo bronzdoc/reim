@@ -1,0 +1,3 @@
+package: github.com/bronzdoc/slacky
+import:
+- package: github.com/nfnt/resize
