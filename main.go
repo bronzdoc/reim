@@ -2,11 +2,7 @@ package main
 
 import (
 	"flag"
-	"github.com/nfnt/resize"
-	"image"
-	"image/jpeg"
-	"log"
-	"os"
+	"github.com/bronzdoc/slacky/lib"
 )
 
 type Options struct {
@@ -14,47 +10,6 @@ type Options struct {
 	Height    uint
 	Out       string
 	ImageName string
-}
-
-type Image struct {
-	Width  uint
-	Height uint
-	Path   string
-	image  image.Image
-}
-
-func newImage(path string) *Image {
-	file, err := os.Open(path)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	img, err := jpeg.Decode(file)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return &Image{
-		Width:  0,
-		Height: 0,
-		Path:   path,
-		image:  img,
-	}
-}
-
-func (i *Image) resize(width, height uint, name string) {
-	i.Width = width
-	i.Height = height
-	resizedImage := resize.Resize(i.Width, i.Height, i.image, resize.Lanczos3)
-
-	out, err := os.Create(name)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer out.Close()
-
-	jpeg.Encode(out, resizedImage, nil)
 }
 
 type Cli struct {
@@ -65,10 +20,10 @@ func newCli(options Options) *Cli {
 	return &Cli{Options: options}
 }
 
-func (c *Cli) run(image *Image) {
+func (c *Cli) run(image *lib.Image) {
 	width := c.Options.Width
 	height := c.Options.Height
-	image.resize(width, height, "slack-image.jpg")
+	image.Resize(width, height, "slack-image.jpg")
 }
 
 var (
@@ -86,5 +41,5 @@ func init() {
 }
 
 func main() {
-	cli.run(newImage("vim_dishwash_bar.jpg"))
+	cli.run(lib.NewImage("vim_dishwash_bar.jpg"))
 }
