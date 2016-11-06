@@ -16,12 +16,17 @@ type Image struct {
 	ImageFormat format.Formater
 }
 
-func NewImage(path string, imgf format.Formater) *Image {
+func NewImage(path string) *Image {
 	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer file.Close()
+
+	imgf, err := format.NewFormatManager(path).Build()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	img, err := imgf.Decode(file)
 	if err != nil {
@@ -29,8 +34,6 @@ func NewImage(path string, imgf format.Formater) *Image {
 	}
 
 	return &Image{
-		Width:       0,
-		Height:      0,
 		Path:        path,
 		image:       img,
 		ImageFormat: imgf,
