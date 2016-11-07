@@ -1,4 +1,4 @@
-package lib
+package cli
 
 import (
 	"github.com/bronzdoc/slacky/lib/image"
