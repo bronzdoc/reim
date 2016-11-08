@@ -1,7 +1,7 @@
 package cli
 
 import (
-	"github.com/bronzdoc/slacky/lib/image"
+	"github.com/bronzdoc/reim/lib/image"
 )
 
 type Options struct {

@@ -1,7 +1,7 @@
 package image
 
 import (
-	"github.com/bronzdoc/slacky/lib/format"
+	"github.com/bronzdoc/reim/lib/format"
 	"github.com/nfnt/resize"
 	"image"
 	"log"

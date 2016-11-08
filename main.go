@@ -2,7 +2,10 @@ package main
 
 import (
 	"flag"
-	"github.com/bronzdoc/slacky/cli"
+	"fmt"
+	"github.com/bronzdoc/reim/cli"
+	"os"
+	"time"
 )
 
 var (
@@ -10,12 +13,27 @@ var (
 )
 
 func init() {
+	flag.Usage = func() {
+		fmt.Printf("Usage of %s:\n", os.Args[0])
+		fmt.Printf("    gozer [FLAGS] IMAGE_NAME\n\n")
+		flag.PrintDefaults()
+	}
+
 	options = cli.Options{}
-	flag.StringVar(&options.ImageName, "image", "", "Name of the image to be resized")
 	flag.UintVar(&options.Width, "width", 20, "New image width")
 	flag.UintVar(&options.Height, "height", 20, "New image height")
-	flag.StringVar(&options.Out, "out", "slack-image.jpg", "new image name")
+
+	defaultImageName := fmt.Sprint(time.Now().Unix())
+	flag.StringVar(&options.Out, "out", defaultImageName, "Generated image name")
+
 	flag.Parse()
+
+	args := flag.Args()
+	if len(args) > 0 {
+		options.ImageName = args[0]
+	} else {
+		flag.Usage()
+	}
 }
 
 func main() {
