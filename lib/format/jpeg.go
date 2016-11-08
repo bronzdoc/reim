@@ -9,10 +9,14 @@ import (
 
 type jpeg struct {
 	magicNumber string
+	extension   string
 }
 
 func NewJpeg() *jpeg {
-	return &jpeg{magicNumber: "\xff\xd8\xff"}
+	return &jpeg{
+		magicNumber: "\xff\xd8\xff",
+		extension:   ".jpeg",
+	}
 }
 
 func (j *jpeg) Encode(w io.Writer, image image.Image) {
@@ -26,4 +30,7 @@ func (j *jpeg) Decode(file *os.File) (image.Image, error) {
 
 func (j *jpeg) MagicNumber() string {
 	return j.magicNumber
+}
+func (j *jpeg) Extension() string {
+	return j.extension
 }

@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"fmt"
 	"github.com/bronzdoc/reim/lib/image"
 )
 
@@ -27,9 +28,11 @@ func (c *cli) Run() {
 
 	image := image.NewImage(name)
 
-	if newName == "" {
-		newName = "slack-image.jpg"
+	if newName != "" {
+		image.Rename(newName)
 	}
 
-	image.Resize(width, height, newName)
+	fmt.Sprint(newName, image.ImageFormat.Extension())
+
+	image.Resize(width, height)
 }
