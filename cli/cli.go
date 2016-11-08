@@ -1,7 +1,6 @@
 package cli
 
 import (
-	"fmt"
 	"github.com/bronzdoc/reim/lib/image"
 )
 
@@ -31,8 +30,6 @@ func (c *cli) Run() {
 	if newName != "" {
 		image.Rename(newName)
 	}
-
-	fmt.Sprint(newName, image.ImageFormat.Extension())
 
 	image.Resize(width, height)
 }
