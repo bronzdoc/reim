@@ -31,6 +31,7 @@ func init() {
 		options.ImageName = args[0]
 	} else {
 		flag.Usage()
+		os.Exit(0)
 	}
 }
 
