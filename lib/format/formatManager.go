@@ -22,6 +22,7 @@ func NewFormatManager(fileName string) *FormatManager {
 
 	// Add formaters
 	fm.addFormat(NewJpeg())
+	fm.addFormat(NewPng())
 
 	return &fm
 }
