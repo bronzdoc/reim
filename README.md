@@ -7,7 +7,7 @@
 
 ```$ reim image.jpg ```
 
-or passing flags
+Specify width and height of the image
 
 ``` $ reim -width 200 -height 200 image.jpg```
 
@@ -22,4 +22,3 @@ or passing flags
 ```
 
 The default image size is 128x128 because reim was thought on slack emojis :trollface:
-
