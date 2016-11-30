@@ -8,14 +8,14 @@ import (
 )
 
 type png struct {
-	magicNumber string
-	extension   string
+	magicNumbers []string
+	extension    string
 }
 
 func NewPng() *png {
 	return &png{
-		magicNumber: "\x89PNG\r\n\x1a\n",
-		extension:   ".png",
+		magicNumbers: []string{"\x89PNG\r\n\x1a\n"},
+		extension:    ".png",
 	}
 }
 
@@ -28,8 +28,8 @@ func (p *png) Decode(file *os.File) (image.Image, error) {
 	return img, err
 }
 
-func (p *png) MagicNumber() string {
-	return p.magicNumber
+func (p *png) MagicNumbers() []string {
+	return p.magicNumbers
 }
 
 func (p *png) Extension() string {

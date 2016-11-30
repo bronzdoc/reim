@@ -44,5 +44,8 @@ func (fm *FormatManager) Build() (Formater, error) {
 }
 
 func (fm *FormatManager) addFormat(formater Formater) {
-	fm.Formaters[formater.MagicNumber()] = formater
+	magicNumbers := formater.MagicNumbers()
+	for _, magicNumber := range magicNumbers {
+		fm.Formaters[magicNumber] = formater
+	}
 }
