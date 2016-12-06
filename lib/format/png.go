@@ -14,8 +14,8 @@ type png struct {
 
 func NewPng() *png {
 	return &png{
-		magicNumbers: []string{"\x89PNG\r\n\x1a\n"},
-		extension:    ".png",
+		magicNumbers: []string{"\x89PNG\r\n\x1a\n", "PNG"},
+		extension: ".png",
 	}
 }
 
